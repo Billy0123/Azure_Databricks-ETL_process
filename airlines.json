@@ -1,0 +1,281 @@
+[
+	{
+		"targetName": "Year",
+		"namePatterns": [],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDate",
+		"applyFunctions": [["isYear",[]],["removeIfNull",[]]]
+	},
+	{
+		"targetName": "Month",
+		"namePatterns": [],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDate",
+		"applyFunctions": [["isMonth",[]],["removeIfNull",[]]]
+	},
+	{
+		"targetName": "Day_of_month",
+		"namePatterns": ["dayofmon*"],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDate",
+		"applyFunctions": [["isDayOfMonth",[]],["removeIfNull",[]]]
+	},
+	{
+		"targetName": "Day_of_week",
+		"namePatterns": ["dayofweek"],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDate",
+		"applyFunctions": [["isDayOfWeek",[]],["removeIfNull",[]]]
+	},
+	{
+		"targetName": "Dep_time",
+		"namePatterns": ["departureTime","deptime"],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": [["removeIfNull",[]]]
+	},
+	{
+		"targetName": "CRS_dep_time",
+		"namePatterns": ["CRSDepTime"],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": [["removeIfNull",[]]]
+	},
+	{
+		"targetName": "Arr_time",
+		"namePatterns": ["arrtime"],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": [["isLargerThanCol",["Dep_time"]],["removeIfNull",[]]]
+	},
+	{
+		"targetName": "CRS_arr_time",
+		"namePatterns": ["crsarrtime"],
+		"primaryKey": true,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": [["isLargerThanCol",["CRS_dep_time"]],["removeIfNull",[]]]
+	},
+	{
+		"targetName": "Unique_carrier",
+		"namePatterns": ["UniqueCarrier"],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Flight_num",
+		"namePatterns": ["FlightNum"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Tail_num",
+		"namePatterns": ["TailNum"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Actual_elapsed_time",
+		"namePatterns": ["actualelapsedtime"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": [["isLargerThan",[0]]]
+	},
+	{
+		"targetName": "CRS_elapsed_time",
+		"namePatterns": ["crselapsed*"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": [["isLargerThan",[0]]]
+	},
+	{
+		"targetName": "Air_time",
+		"namePatterns": ["airtime"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Arr_delay",
+		"namePatterns": ["arrdelay"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Dep_delay",
+		"namePatterns": ["depdelay"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimTimes",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Origin",
+		"namePatterns": [],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Dest",
+		"namePatterns": [],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": [["isDifferentFrom",["Origin"]]]
+	},
+	{
+		"targetName": "Distance",
+		"namePatterns": [],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": [["isLargerThan",[0]]]
+	},
+	{
+		"targetName": "Taxi_in",
+		"namePatterns": ["taxiin"],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Taxi_out",
+		"namePatterns": ["taxiout"],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Cancelled",
+		"namePatterns": [],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Cancellation_code",
+		"namePatterns": ["cancel*code"],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Diverted",
+		"namePatterns": [],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimFlight",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Carrier_delay",
+		"namePatterns": ["carr*delay"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDelay",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Weather_delay",
+		"namePatterns": ["weat*delay"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDelay",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "NAS_delay",
+		"namePatterns": ["nasdelay"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDelay",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Security_delay",
+		"namePatterns": ["secu*delay"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDelay",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Late_aircraft_delay",
+		"namePatterns": ["lateair*delay"],
+		"primaryKey": false,
+		"type": "Integer",
+		"nullable": true,
+		"targetBase": "dimDelay",
+		"applyFunctions": []
+	},
+	{
+		"targetName": "Is_arr_delayed",
+		"namePatterns": ["isarrdelay*"],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimDelay",
+		"applyFunctions": [["changeUsingMap",[{"Y":"YES","N":"NO"}]]]
+	},
+	{
+		"targetName": "Is_dep_delayed",
+		"namePatterns": ["isdepdelay*"],
+		"primaryKey": false,
+		"type": "String",
+		"nullable": true,
+		"targetBase": "dimDelay",
+		"applyFunctions": [["changeUsingMap",[{"Y":"YES","N":"NO"}]]]
+	}
+]
